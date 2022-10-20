@@ -65,27 +65,105 @@ In: Dinner 1,2,3
 Out: Unable to process: Dessert is missing
 """
 
-from macpath import split
+breakfast = {
+    1:"Eggs",
+    2:"Toast",
+    3:"Coffee"
+} 
 
+lunch = {
+    1:"Sandwich",
+    2:"Chips",
+    3:"Soda"
+}
 
-def test(text):
-    print(text)
+dinner = {
+    1:"Steak",
+    2:"Potatoes",
+    3:"Wine",
+    4:"Cake"
+}
+
+err = "Unable to process: "
+
 
 def menu_ordering_system(order):
     result = []
     temp = order.split()
     #print(temp)
     meal = temp[0]
+    if len(temp) == 1:
+        print(err + "Main is missing, side is missing")
+        return
+
     items = temp[1]
-    items = items.split(",")
+    #items = items.split(",")
+    items = [eval(i) for i in items.split(",")]
+    items.sort()
     #print(meal)
     #print(items)
 
+    '''match meal:
+        case "Breakfast"
+    # I would use a match switch but that is only in py3.10 or newer
+    '''
     
-    return
+    
+    if 1 not in items:
+        print(err + "Main is missing.")
+        return
+    if 2 not in items:
+        print(err + "Side is missing.")
+        return
 
+    if (meal == "Breakfast"):
+        for num in set(items):
+            if items.count(num) > 1:
+                result.append("{food}({freq})".format(food = breakfast.get(num), freq = items.count(num)))
+            else:
+                result.append("{food}".format(food = breakfast.get(num)))
+        if 3 not in items:
+            result.append("Water")
+
+    elif (meal == "Lunch"):
+        for num in set(items):
+            if items.count(num) > 1:
+                result.append("{food}({freq})".format(food = lunch.get(num), freq = items.count(num)))
+            else:
+                result.append("{food}".format(food = lunch.get(num)))
+        if 3 not in items:
+            result.append("Water")
+
+    elif (meal == "Dinner"):
+        if 4 not in items:
+            print(err + "Dessert is missing")
+            return
+        for num in set(items):
+            if items.count(num) > 1:
+                result.append("{food}({freq})".format(food = dinner.get(num), freq = items.count(num)))
+            else:
+                result.append("{food}".format(food = dinner.get(num)))
+
+    else:
+        print(err + "Bad mealtime.")
+        return
+
+
+    print(",".join(result))
 
 if __name__ == "__main__":
-    test("hello world")
     menu_ordering_system("Breakfast 1,2,3")
     menu_ordering_system("Breakfast 2,3,1")
+    menu_ordering_system("Breakfast 1,2,3,3,3")
+    menu_ordering_system("Breakfast 1")
+    menu_ordering_system("Lunch 1,2,3")
+    menu_ordering_system("Lunch 1,2")
+    #menu_ordering_system("Lunch 1,1,2, 3")
+    menu_ordering_system("Lunch 1,2,2")
+    menu_ordering_system("Lunch 2,3,1")
+    menu_ordering_system("Lunch")
+    menu_ordering_system("Dinner 1,2,3")
+    menu_ordering_system("Dinner 1,2,3,4")
+
+    # insert water for dinner
+    # garbage input (work on splicing)
