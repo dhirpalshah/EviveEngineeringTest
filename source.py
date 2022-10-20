@@ -1,6 +1,22 @@
 #! /usr/bin/python
 
 """
+breakfast
+Main (1): Eggs
+Side (2): Toast
+Drink (3): Coffee
+
+lunch
+Main (1): Sandwich
+Side (2): Chips
+Drink (3): Soda
+
+dinner
+Main (1): Steak
+Side (2): Potatoes
+Drink (3): Wine
+Dessert (4): Cake
+
 Rules:
 1. An order consists of a meal and collection of comma separated item Ids.
 2. The system should return the name of the items ordered
@@ -56,6 +72,7 @@ def test(text):
     print(text)
 
 def menu_ordering_system(order):
+    result = []
     temp = order.split()
     #print(temp)
     meal = temp[0]
@@ -63,7 +80,7 @@ def menu_ordering_system(order):
     items = items.split(",")
     #print(meal)
     #print(items)
-    
+
     
     return
 
