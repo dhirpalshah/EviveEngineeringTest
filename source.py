@@ -87,6 +87,7 @@ dinner = {
 
 err = "Unable to process: "
 
+# this function creates a random order for unlimited testing
 def testing_function():
     result = ""
     lst = []
@@ -105,6 +106,7 @@ def testing_function():
 
 def menu_ordering_system(order):
     try:
+    # this just splits up the arguments given and checks for faulty input
         result = []
         temp = order.split()
         #print(temp)
@@ -116,6 +118,7 @@ def menu_ordering_system(order):
         items = temp[1]
         #items = items.split(",")
         items = [eval(i) for i in items.split(",")]
+        # sort so that correct items go first
         items.sort()
     except:
         print(err + "Bad order format")
@@ -124,6 +127,7 @@ def menu_ordering_system(order):
     #print(items)
 
 
+    # accounting for garbage input
     if meal != "Breakfast" and meal != "Lunch" and meal != "Dinner":
         print(err + "Bad mealtime")
         return
@@ -133,7 +137,7 @@ def menu_ordering_system(order):
     # I would use a match switch but that is only in py3.10 or newer
     '''
     
-    
+    # check if mains or sides are missing
     if 1 not in items:
         print(err + "Main is missing.")
         return
@@ -141,6 +145,7 @@ def menu_ordering_system(order):
         print(err + "Side is missing.")
         return
 
+    # orders cannot have more than one main!
     if items.count(1) > 1:
         if (meal == "Breakfast"):
             print(err + "{food} cannot be ordered more than once".format(food = breakfast.get(1)))
@@ -150,6 +155,8 @@ def menu_ordering_system(order):
             print(err + "{food} cannot be ordered more than once".format(food = dinner.get(1)))
         return
 
+    # each meal has its own specifications
+    # so there are 3 separate if statements for each meal
     if (meal == "Breakfast"):
         for num in set(items):
             if items.count(num) > 1:
@@ -169,6 +176,7 @@ def menu_ordering_system(order):
             result.append("Water")
 
     else:
+        # you need dessert at dinner!
         if 4 not in items:
             print(err + "Dessert is missing")
             return
@@ -196,6 +204,8 @@ if __name__ == "__main__":
     # menu_ordering_system("Dinner 1,2,3,4")
     # menu_ordering_system("Dinner 1,2,3")
 
+    # the tests above are manually written
+    # but the random function allows infinite combinations
     randomtest = testing_function()
     print(randomtest)
     menu_ordering_system(randomtest)
