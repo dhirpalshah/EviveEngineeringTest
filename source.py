@@ -158,6 +158,7 @@ def menu_ordering_system(order):
     # each meal has its own specifications
     # so there are 3 separate if statements for each meal
     if (meal == "Breakfast"):
+        # calling set() so that each food item is iterated over once only
         for num in set(items):
             if items.count(num) > 1:
                 result.append("{food}({freq})".format(food = breakfast.get(num), freq = items.count(num)))
