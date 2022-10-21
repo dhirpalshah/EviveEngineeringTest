@@ -3,7 +3,7 @@ Evive Engineering Test
 How to run:
 When directly calling
 
-python3 source.py
+make
 
 you will see a randomized order along with the output. Note: it may take
 several tries to get a valid order.
