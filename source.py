@@ -1,4 +1,5 @@
 #! /usr/bin/python
+import random
 
 """
 breakfast
@@ -86,6 +87,21 @@ dinner = {
 
 err = "Unable to process: "
 
+def testing_function():
+    result = ""
+    lst = []
+    meal = ["Breakfast ", "Lunch ", "Dinner "]
+    result += (random.choice(meal))
+    if result == "Dinner":
+        for i in range(1,random.randrange(6)):
+            lst.append(str(random.randint(1,4)))
+    else:
+        for i in range(1,random.randrange(5)):
+            lst.append(str(random.randint(1,3)))
+    lst.append("1")
+    # this line ensures that there is a higher chance that the order is good
+    return result + (",".join(lst))
+
 
 def menu_ordering_system(order):
     try:
@@ -168,14 +184,18 @@ def menu_ordering_system(order):
     print(", ".join(result))
 
 if __name__ == "__main__":
-    menu_ordering_system("Breakfast 1,2,3")
-    menu_ordering_system("Breakfast 2,3,1")
-    menu_ordering_system("Breakfast 1,2,3,3,3")
-    menu_ordering_system("Breakfast 1")
-    menu_ordering_system("Lunch 1,2,3")
-    menu_ordering_system("Lunch 1,2")
-    menu_ordering_system("Lunch 1,1,2,3")
-    menu_ordering_system("Lunch 1,2,2")
-    menu_ordering_system("Lunch")
-    menu_ordering_system("Dinner 1,2,3,4")
-    menu_ordering_system("Dinner 1,2,3")
+    # menu_ordering_system("Breakfast 1,2,3")
+    # menu_ordering_system("Breakfast 2,3,1")
+    # menu_ordering_system("Breakfast 1,2,3,3,3")
+    # menu_ordering_system("Breakfast 1")
+    # menu_ordering_system("Lunch 1,2,3")
+    # menu_ordering_system("Lunch 1,2")
+    # menu_ordering_system("Lunch 1,1,2,3")
+    # menu_ordering_system("Lunch 1,2,2")
+    # menu_ordering_system("Lunch")
+    # menu_ordering_system("Dinner 1,2,3,4")
+    # menu_ordering_system("Dinner 1,2,3")
+
+    randomtest = testing_function()
+    print(randomtest)
+    menu_ordering_system(randomtest)
